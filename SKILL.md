@@ -1,130 +1,101 @@
 ---
-name: pop-commercial-poster-skill
-description: Generate a Simplified-Chinese 9:16 poster in the 「波普商业」(pop-commercial) style by 一张有戏. Use when the user wants a 波普商业 / pop commercial poster.
+name: pop-commercial-poster
+description: 波普商业海报：用高饱和、强冲击与产品优先的构图，做一张明亮易懂的商业海报。根据【主标题】【短句】【场景】【版式】【主色强调】【画幅】生成一张简体中文海报。当用户提到「波普商业 / Pop Commercial / 商业波普海报」时使用。 Use when the user asks for a pop commercial poster, bright product-forward poster — produces one poster with only three visible Chinese lines: headline, supporting line, and footer「一张有戏 · 视觉习作」.
+license: MIT
 ---
 
-# 波普商业 · pop-commercial poster skill
+# 波普商业 · Pop Commercial Poster
 
-一张有戏「波普商业」风格海报技能。输出一张 9:16 竖版、简体中文的独立海报。
+用高饱和、强冲击与产品优先的构图，做一张明亮易懂的商业海报。
+A bright high-impact commercial poster that feels energetic, immediate, product-forward, and easy to read.
 
-## 用法
-1. 确定一个主标题（2–4 字）和一句短句。
-2. 画面只出现三段文字：主标题、短句、页脚「一张有戏 · 视觉习作」。
-3. 版式可选：centered-hero, poster-card。
-4. 参照下方完整提示词模板，替换 Headline / Supporting phrase / 场景描述。
+## 输入 · Inputs
 
-## 示例主题
-- 柑橘汽水：把清爽画成鲜亮的颜色（centered-hero）— Unbranded chilled clear glass of orange soda, orange slice, cobalt/yellow halftone and one bold comic burst.
-- 莓好一天：让一口甜拥有明亮的形状（poster-card）— Generic clear strawberry yogurt cup with no packaging label, fresh strawberry cutouts, bright pink and cyan graphic shapes.
-- 一口脆：把酥脆的瞬间放大（centered-hero）— Golden potato chips suspended around one simple unbranded paper cone, red/yellow bold halftone commercial still-life.
-- 咖啡醒醒：让清醒从画面开始（poster-card）— One clear iced coffee glass with visible ice, cobalt and bright coral fields, chunky readable Chinese lettering.
-- 冰淇淋日：给日常加一点柔软（centered-hero）— One creamy soft-serve cone hero, pink and lemon fields, clean pop repetition of tiny cone silhouettes, controlled halftone.
-- 吐司出炉：把暖意留在这一片里（poster-card）— One toasted bread slice and tiny butter curl, bright yellow/cobalt controlled shapes and chunky title, no factual nutritional claims.
-- 糖果星球：把快乐装进一颗颜色（centered-hero）— Three brightly wrapped generic candies as one clustered focal subject, saturated coral/cyan ground and disciplined dots.
-- 桃气时刻：让果香先成为画面（poster-card）— One clear peach drink with fresh peach wedge, bright peach-pink and cobalt blocks, glossy still-life with bold pop type.
-
-## 完整提示词模板（第 1 张原文）
 ```
-Use case: ads-marketing. Create exactly ONE polished professional 9:16 portrait poster, static flat artwork, Chinese-mainland cultural/creative studio portfolio concept.
-Language: Simplified Chinese. Headline: 柑橘汽水. Supporting phrase: 把清爽画成鲜亮的颜色. Tiny plain footer: 一张有戏 · 视觉习作. Exact visible text ONLY these three phrases, every character correctly formed. No English, random numbers, fake events, dates, addresses, awards, offers, prices, affiliations, calls to action or status labels. All content is fictional/conceptual creative brief, no real client claim.
+【主标题】：
+【短句】：
+【场景】：
+【版式】：（centered-hero / poster-card，缺省 centered-hero）
+【主色强调】：（红 / 黄 / 蓝 / 粉 / cyan / orange / lime（高对比组合））
+【画幅】：9:16（默认）
+```
 
-SOURCE UNIVERSAL RULES:
+**缺失字段不要追问**：只给了主标题（或部分字段）时，由你根据主标题自行补全其余字段，并保证场景、版式、主色强调彼此协调、指向同一概念。画幅缺省为 9:16。
+If any field is missing, fill it yourself coherently from the headline — never ask. Default aspect ratio 9:16.
 
+## 使用方法 · How to use
+1. 读取输入，补全缺失字段（内部完成，不输出分析）。
+2. 按下方核心规则 + [prompt.md](prompt.md) 组合提示词，交给图像生成工具，**只输出一张**海报。
+3. 若当前环境不能生图，输出下方「可直接粘贴的最终提示词」，已填好字段，供用户粘贴到 ChatGPT / 其他图像模型。
 
-These rules apply to every poster. Do not repeat them in layout or style notes.
+示例输入见 [examples/themes.md](examples/themes.md)。
 
-- Build around one dominant message, one clear focal point, and one communication goal.
-- Establish a simple reading order: headline -> focal image -> supporting copy -> supplied details.
-- Preserve required copy exactly unless the user explicitly asks for rewriting.
-- Keep important text readable, high-contrast, and inside safe margins.
-- Use confident spacing and avoid overstuffed layouts.
-- Avoid fake extra text, random logos, QR codes, decorative clutter, malformed typography, and generic AI-poster noise.
-- Treat the poster canvas as static print/editorial artwork rather than a clickable interface. If the source explicitly requests a product UI, browser window, dashboard, or device mockup, preserve that depicted content inside the poster.
-- CTA copy is extractive-only: include it only when the source explicitly supplies the wording. When output language differs, verify the translated CTA against a recorded exact source quote. Never invent action or status labels.
-- If no CTA is sourced, leave the action area empty. If one is sourced, render it as ordinary poster typography in a footer or text lockup. Do not place poster-level action copy inside a button, rounded rectangle, pill, chip, capsule, tab, input field, or any other clickable-looking UI container; do not decorate it with a shadow, arrow, chevron, or cursor icon.
+## 核心规则 · Core rules
 
-
-
-SELECTED STYLE — STRICTLY THIS VISUAL SYSTEM, DO NOT MIX OTHER STYLES:
-# Pop Commercial
-
-## Intent
-
+### 目标 · Intent
+用高饱和、强冲击与产品优先的构图，做一张明亮易懂的商业海报。
 Create a bright, high-impact commercial poster that feels energetic, immediate, product-forward, and easy to understand.
 
-## Typography
-
+### 字体 · Typography
 - Use bold friendly display sans-serif or chunky headline type.
 - Make offer/product names highly readable.
 - Use badges, bursts, labels, or repeated words only with discipline.
 
-## Palette
+### 配色 · Palette
+- Bright saturated palette: red, yellow, blue, pink, cyan, orange, lime. Use strong contrast and controlled combinations.
+- 【主色强调】只取一个精确强调色，不要彩虹堆砌。
 
-Bright saturated palette: red, yellow, blue, pink, cyan, orange, lime. Use strong contrast and controlled combinations.
+### 意象 · Imagery
+- Use product cutouts, expressive objects, halftone cues, stickers, comic-like accents, repetition, or simple character energy.
+- 【场景】描述应支撑字体与版式，不要喧宾夺主（除非风格本身以主体物件为第一阅读）。
 
-## Imagery
+### 质感 · Texture / Material
+- Glossy product lighting, halftone dots, screenprint texture, paper cutouts, clean vector shapes.
 
-Use product cutouts, expressive objects, halftone cues, stickers, comic-like accents, repetition, or simple character energy.
-
-## Texture / Material
-
-Glossy product lighting, halftone dots, screenprint texture, paper cutouts, clean vector shapes.
-
-## Composition Rules
-
+### 构图 · Composition
 - Put the product or offer in the first read.
 - Use clear source-supplied price and offer placement. If action copy is supplied, render it as plain promotional typography without button styling.
 - Keep energy high but hierarchy simple.
 - Use repetition to amplify, not clutter.
+- 版式从该风格允许的布局中选择：`centered-hero / poster-card`；缺省 `centered-hero`。
+- 单一焦点、清晰阅读顺序：主标题 → 焦点画面 → 短句 → 页脚。
 
-## Avoid
+### 文字锁定 · Text lock（一张有戏）
+- 画面可见文字**只有三行**：【主标题】、【短句】、页脚「一张有戏 · 视觉习作」。
+- 简体中文；每个字正确成形；不要英文乱码、假活动、假日期、假地址、假奖项、假价格、假 CTA、假品牌。
+- 不要按钮/圆角胶囊/UI 容器；页脚就是普通小字排印。
 
-Unreadable sale clutter, too many badges, fake discount text, distorted packaging, muddy colors, and generic cartoon chaos.
+### 避免 · Avoid
+- Unreadable sale clutter, too many badges, fake discount text, distorted packaging, muddy colors, and generic cartoon chaos.
+- 额外假字、随机 logo、二维码、装饰堆砌、畸形字体、通用 AI 海报噪声、水印、UI。
 
+### 执行 · Execution
+不提问、不展示分析、不出多版本，直接输出一张海报。
 
-INTERNAL COMPOSITION:
-# Centered Hero
+## 可直接粘贴的最终提示词 · Ready-to-paste prompt template
 
-## Composition Structure
-
-- Place one dominant subject in the optical center.
-- Keep headline above, below, or tightly integrated with the hero subject.
-- Use symmetrical or near-symmetrical balance with subtle asymmetry for sophistication.
-- Reserve the bottom area for source-supplied date, location, sponsor, or other factual details. If the source includes action copy, typeset it as a plain footer line rather than a button.
-
-## Hierarchy Rules
-
-1. Hero subject and headline compete as a unified first read.
-2. Subheadline supports the meaning without fragmenting attention.
-3. Details sit smaller in a stable footer or corner lockup.
-
-## Text Placement
-
-- Use large, simple headline blocks.
-- Keep secondary copy outside the hero silhouette.
-- Avoid placing small text over textured image areas.
-
-## Image Treatment
-
-Use a clean product/person/object/abstract hero with strong lighting, crisp edges, and controlled background separation.
-
-## Spacing Rules
-
-Use generous margins and breathing room around the hero. Do not fill every corner.
-
-## Aspect-Ratio Behavior
-
-Works especially well in `2:3`, `3:4`, `4:5`, and `9:16`. In `16:9`, widen the hero and shift text into side gutters.
-
-## Avoid
-
-Multiple competing subjects, busy backgrounds, small scattered text, and generic centered stock-poster symmetry.
-
-
-SPECIFIC SUBJECT AND ART DIRECTION:
-Unbranded chilled clear glass of orange soda, orange slice, cobalt/yellow halftone and one bold comic burst.
-
-Quality: exquisite thoughtful art direction, one immediate focal point, sophisticated typographic spacing and clear reading order, original expressive composition with wide enough safe margins. Headline large and readable at phone thumbnail; secondary text restrained, not generic template. Typography adapted sensitively to real Chinese glyphs, with the visual weight demanded by style. Material/light/print treatment consistent with selected style. If any person appears, fictional mainland Chinese adult, natural anatomy and authentic face; otherwise no people. All props physically coherent unless the SPECIFIC surreal idea deliberately changes physics. No trademarks or label text on products, no fake logos/watermarks/QR. No poster mockup, wall frame, multiple-poster collage, UI buttons or decorative website components. The creative theme must determine composition; vary crop, hierarchy and negative space across the series. Output one finished poster only.
 ```
+【主标题】：{{主标题}}
+【短句】：{{短句}}
+【场景】：{{场景}}
+【版式】：{{版式，缺省 centered-hero；可选 centered-hero / poster-card}}
+【主色强调】：{{主色强调}}
+【画幅】：{{画幅，默认 9:16}}
 
-全部 8 条提示词见 `PROMPTS.json`，来源见 `SOURCES.md`。
+Create exactly ONE polished professional {{画幅，默认 9:16}} portrait poster, static flat artwork, Chinese-mainland cultural/creative studio portfolio concept.
+Language: Simplified Chinese. Headline: {{主标题}}. Supporting phrase: {{短句}}. Tiny plain footer: 一张有戏 · 视觉习作. Exact visible text ONLY these three phrases, every character correctly formed. No English clutter, random numbers, fake events, dates, addresses, awards, offers, prices, affiliations, calls to action or status labels. All content is fictional/conceptual creative brief, no real client claim.
+If any field above is empty, fill it coherently from 【主标题】 so scene, accent and layout support one clear idea — do not ask questions.
+
+SELECTED STYLE — STRICTLY THIS VISUAL SYSTEM, DO NOT MIX OTHER STYLES:
+# Pop Commercial
+Intent: Create a bright, high-impact commercial poster that feels energetic, immediate, product-forward, and easy to understand.
+Typography: Use bold friendly display sans-serif or chunky headline type. Make offer/product names highly readable. Use badges, bursts, labels, or repeated words only with discipline.
+Palette: Bright saturated palette: red, yellow, blue, pink, cyan, orange, lime. Use strong contrast and controlled combinations. Use exactly one precise accent from 【主色强调】.
+Imagery: Use product cutouts, expressive objects, halftone cues, stickers, comic-like accents, repetition, or simple character energy. Scene direction: {{场景}}.
+Texture / Material: Glossy product lighting, halftone dots, screenprint texture, paper cutouts, clean vector shapes.
+Composition: Put the product or offer in the first read. Use clear source-supplied price and offer placement. If action copy is supplied, render it as plain promotional typography without button styling. Keep energy high but hierarchy simple. Use repetition to amplify, not clutter. Use layout {{版式，缺省 centered-hero}} from allowed set (centered-hero / poster-card). One dominant message, one focal point; reading order headline -> focal image -> supporting copy -> footer. Confident spacing; no overstuffed layout; no UI buttons/pills for the footer.
+
+Avoid: Unreadable sale clutter, too many badges, fake discount text, distorted packaging, muddy colors, and generic cartoon chaos. Also avoid fake extra text, logos, QR codes, decorative clutter, malformed typography, generic AI-poster noise, watermarks, UI chrome.
+
+Do not ask questions. Do not show analysis or alternatives. Output the single finished poster only.
+```
